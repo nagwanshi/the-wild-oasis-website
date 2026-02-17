@@ -3,5 +3,11 @@ export const metadata = {
 };
 
 export default function Home() {
-  return <div>Account</div>;
+  return (
+    <div>
+      <h2 className="font-semibold text-2xl text-accent-400 mb-4">
+        Welcome Sapna!
+      </h2>
+    </div>
+  );
 }
