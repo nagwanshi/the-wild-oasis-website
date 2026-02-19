@@ -30,7 +30,8 @@ export default async function Page({ searchParams }) {
       <div className="flex justify-end mb-8">
         <Filter />
       </div>
-      <Suspense fallback={<Spinner />}>
+      {/* { // makes Suspense work in the case of navigation (transition)} */}
+      <Suspense fallback={<Spinner />} key={filter}>
         <CabinList filter={filter} />
       </Suspense>
     </div>
