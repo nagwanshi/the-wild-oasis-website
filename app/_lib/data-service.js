@@ -196,6 +196,7 @@ export async function updateGuest(id, updatedFields) {
     console.error(error);
     throw new Error("Guest could not be updated");
   }
+
   return data;
 }
 

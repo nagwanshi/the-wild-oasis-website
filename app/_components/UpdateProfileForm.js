@@ -1,9 +1,10 @@
 "use client";
 
 import { updateGuest } from "@/app/_lib/actions";
+import { useFormStatus } from "react-dom";
 
 function UpdateProfileForm({ guest, children }) {
-  const { fullName, email, nationality, nationalID, countryFlag } = guest;
+  const { fullName, email, nationality, nationalId, countryFlag } = guest;
   return (
     <form
       action={updateGuest}
@@ -46,17 +47,28 @@ function UpdateProfileForm({ guest, children }) {
         <label htmlFor="nationalID">National ID number</label>
         <input
           name="nationalID"
-          defaultValue={nationalID}
+          defaultValue={nationalId}
           className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm"
         />
       </div>
 
       <div className="flex justify-end items-center gap-6">
-        <button className="bg-accent-500 px-8 py-4 text-primary-800 font-semibold hover:bg-accent-600 transition-all disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300">
-          Update profile
-        </button>
+        <Button />
       </div>
     </form>
+  );
+}
+
+function Button() {
+  // This needs to be a client component in order to use this new hook
+  const { pending } = useFormStatus();
+  return (
+    <button
+      className="bg-accent-500 px-8 py-4 text-primary-800 font-semibold hover:bg-accent-600 transition-all disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300"
+      disabled={pending}
+    >
+      {pending ? "Updating ..." : "Update profile"}
+    </button>
   );
 }
 
